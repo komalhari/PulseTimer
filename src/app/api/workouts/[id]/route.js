@@ -1,0 +1,42 @@
+// /app/api/workouts/[id]/route.js
+
+import { NextResponse } from "next/server";
+import prisma from "@/utils/prisma";
+import { createClient } from "@/utils/supabase/server";
+
+export async function PUT(req, { params }) {
+  const { id } = params; // dynamic [id] from URL
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const data = await req.json();
+  const { activity, sets, reps, rest, duration } = data;
+
+  try {
+    const updated = await prisma.workout.update({
+      where: {
+        id, // the workout ID in URL
+        userId: user.id, // makes sure user can only update *their* workout
+      },
+      data: {
+        activity,
+        sets: Number(sets),
+        reps: Number(reps),
+        rest: Number(rest),
+        duration: Number(duration),
+      },
+    });
+
+    return NextResponse.json(updated);
+  } catch (err) {
+    console.error("Update workout error:", err);
+    return NextResponse.json({ error: "Workout not found or update failed" }, { status: 500 });
+  }
+}
