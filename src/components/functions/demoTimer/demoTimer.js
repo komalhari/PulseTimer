@@ -73,7 +73,7 @@ const Timer = () => {
     if (!hasSubmitted) return;
     animationStartRef.current = null;
     requestAnimationFrame(() => rotation.set(0));
-  }, [phase, sets, hasSubmitted]);
+  }, [phase, sets, hasSubmitted, rotation]);
 
   useAnimationFrame((t) => {
     if (!hasSubmitted || pause || completed) return;
