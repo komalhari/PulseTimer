@@ -30,7 +30,7 @@ export default function DeleteInfoPage() {
           <h2 className="text-xl font-semibold">Need Help?</h2>
           <p>
             If you encounter issues deleting your account, please contact us at{" "}
-            <a href="mailto:pulsetimer@app.com" className="text-blue-600 underline">pulsetimer@app.com</a>.
+            <a href="mailto:pulsetimer@app.com" className="text-blue-600 underline">pulsetimer.app@gmail.com</a>.
           </p>
         </div>
       </section>

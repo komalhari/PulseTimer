@@ -47,7 +47,7 @@ export function SettingsDialog({open, onOpenChange, userName, providers, userId}
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="overflow-hidden p-0 h-[70vh] md:max-h-[500px] md:max-w-[700px] lg:max-w-[800px]">
+      <DialogContent className="overflow-hidden p-0 h-[70vh] sm:h-auto md:max-h-[500px] md:max-w-[700px] lg:max-w-[800px]">
         <DialogTitle className="sr-only">Settings</DialogTitle>
 
         <SidebarProvider className="items-start">

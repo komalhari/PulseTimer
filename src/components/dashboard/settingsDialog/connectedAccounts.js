@@ -6,22 +6,11 @@ import { FaSpotify, FaFacebook, FaGoogle } from "react-icons/fa6";
 import { IoMdMail } from "react-icons/io";
 import { linkAdditionalIdentity } from "@/lib/actions";
 import { useRouter } from "next/navigation";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
 import { useState } from "react";
 import { toast } from "sonner";
 
 export default function ConnectedAccounts(providers) {
-  const router = useRouter();
-  const [open, setOpen] = useState(false);
+
   let providededData = providers.providers || [];
 
   const handleConnect = (provider_) => {
@@ -93,7 +82,7 @@ export default function ConnectedAccounts(providers) {
   });
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 overflow-auto">
       {accounts.map((account) => (
         <Card key={account.provider} className="flex flex-col justify-between">
           <CardHeader className="flex items-center gap-1.5">
@@ -121,24 +110,7 @@ export default function ConnectedAccounts(providers) {
         </Card>
       ))}
 
-      <AlertDialog open={open} onOpenChange={setOpen}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Alert!</AlertDialogTitle>
-            <AlertDialogDescription>
-              You need to signup with the existing email address of any linked
-              accounts to successfully conncet this account with the email, else
-              a new account would be created.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={() => router.push("/signup?mode=link")}>
-              I understand
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      
     </div>
   );
 }

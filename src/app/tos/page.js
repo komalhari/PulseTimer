@@ -54,7 +54,7 @@ export default function TermsOfServicePage() {
           <h2 className="text-xl font-semibold">7. Contact Us</h2>
           <p>
             If you have any questions about these Terms, you can contact us at:{" "}
-            <a href="mailto:pulsetimer@app.com" className="text-blue-600 underline">pulsetimer@app.com</a>
+            <a href="mailto:pulsetimer@app.com" className="text-blue-600 underline">pulsetimer.app@gmail.com</a>
           </p>
         </div>
       </section>
