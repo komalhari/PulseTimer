@@ -45,15 +45,5 @@ export async function updateSession(request) {
 
   return supabaseResponse;
 
-  if (
-    !data.user &&
-    !request.nextUrl.pathname.startsWith("/login") &&
-    !request.nextUrl.pathname.startsWith("/auth")
-  ) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    return NextResponse.redirect(url);
-  }
 
-  return supabaseResponse;
 }

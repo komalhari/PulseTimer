@@ -21,7 +21,7 @@ export async function GET(request) {
       return redirect(next);
     }
 
-    console.error("❌ verifyOtp failed:", error.message);
+    console.error("verifyOtp failed:", error.message);
   }
 
   return redirect("/auth/auth-code-error");

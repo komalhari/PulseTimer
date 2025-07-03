@@ -45,7 +45,7 @@ export async function SignUp(email, password, captchaToken) {
     email,
     password,
     options: {
-      // emailRedirectTo: `${process.env.SITE_URL}/auth/confirm?next=/dashboard`,
+  
       captchaToken,
     },
   });
@@ -175,7 +175,7 @@ export async function resetPassword(email, captchaToken) {
 
 export async function updatePassword(new_password) {
   const supabase = await createClient();
-  const { data, error } = await supabase.auth.updateUser({
+  const { error } = await supabase.auth.updateUser({
     password: new_password,
   });
   if (error) {
@@ -196,7 +196,7 @@ export async function DeleteUser({ userId }) {
     const { error: signOutError } = await supabase.auth.signOut();
     if (signOutError) throw signOutError;
 
-    console.log("first", userId);
+  
     const { error } = await supabase.auth.admin.deleteUser(userId);
     if (error) {
       console.log(error);
