@@ -14,6 +14,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import {
@@ -41,11 +47,11 @@ export function SettingsDialog({open, onOpenChange, userName, providers, userId}
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="overflow-hidden p-0 md:max-h-[500px] md:max-w-[700px] lg:max-w-[800px]">
+      <DialogContent className="overflow-hidden p-0 h-[70vh] md:max-h-[500px] md:max-w-[700px] lg:max-w-[800px]">
         <DialogTitle className="sr-only">Settings</DialogTitle>
 
         <SidebarProvider className="items-start">
-          <Sidebar collapsible="none" className="hidden md:flex">
+          <Sidebar collapsible="none" className="flex w-auto">
             <SidebarContent>
               <SidebarGroup>
                 <SidebarGroupContent>
@@ -57,10 +63,10 @@ export function SettingsDialog({open, onOpenChange, userName, providers, userId}
                           isActive={item.name === activeSection}
                           onClick={() => setActiveSection(item.name)}
                         >
-                          <a href="#">
+                          <div>
                             <item.icon />
-                            <span>{item.name}</span>
-                          </a>
+                            <span className="hidden sm:block">{item.name}</span>
+                          </div>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                     ))}

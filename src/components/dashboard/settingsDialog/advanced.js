@@ -10,14 +10,13 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { DeleteUser } from "@/lib/actions";
 import { Input } from "../../ui/input";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { resolve } from "styled-jsx/css";
+
 
 const Advacned = (userId) => {
   const [open, setOpen] = useState(false);

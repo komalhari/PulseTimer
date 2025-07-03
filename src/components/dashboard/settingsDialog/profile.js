@@ -7,7 +7,7 @@ import { changeUsername } from "@/lib/services/changeUsername";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { X } from "lucide-react";
+
 
 const Profile = ({ userName, userId }) => {
   const schema = yup.object().shape({
@@ -22,17 +22,14 @@ const Profile = ({ userName, userId }) => {
       if (userName === NewUserName) {
         setClick(false);
       } else {
-        const res = await changeUsername({userId, NewUserName});
+        const res = await changeUsername({ userId, NewUserName });
         setClick(false);
-        console.log(res)
+        console.log(res);
 
-    if(res.username === NewUserName){
-    window.location.reload();
-    }
-     
-      
+        if (res.username === NewUserName) {
+          window.location.reload();
+        }
       }
-   
     } catch (e) {
       console.log(e);
     }
@@ -41,17 +38,18 @@ const Profile = ({ userName, userId }) => {
   return (
     <>
       <div className="grid w-full max-w-sm items-center">
-        <form onSubmit={handleSubmit(onSubmit)} >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-3">
-          <Label htmlFor="Display Name">Display Name</Label>
-          <Input
-            disabled={!click}
-            type="text"
-            id="username"
-            className={"w-2/3"}
-            defaultValue={userName}
-            {...register("NewUserName")}
-          /></div>
+            <Label htmlFor="Display Name">Display Name</Label>
+            <Input
+              disabled={!click}
+              type="text"
+              id="username"
+              className={"w-2/3"}
+              defaultValue={userName}
+              {...register("NewUserName")}
+            />
+          </div>
 
           {!click ? (
             <Button

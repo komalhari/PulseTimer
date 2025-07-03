@@ -21,8 +21,8 @@ export async function PUT(req, { params }) {
   try {
     const updated = await prisma.dailyWorkout.update({
       where: {
-        id, // the workout ID in URL
-        userId: user.id, // makes sure user can only update *their* workout
+        id, 
+        userId: user.id, 
       },
       data: {
         activity,
@@ -41,29 +41,3 @@ export async function PUT(req, { params }) {
   }
 }
 
-// export async function DELETE(req, { params }) {
-//   const { id } = params;
-//   const supabase = await createClient();
-
-//   const {
-//     data: { user },
-//   } = await supabase.auth.getUser();
-
-//   if (!user) {
-//     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-//   }
-
-//   try {
-//     const deleted = await prisma.dailyWorkout.delete({
-//       where: {
-//         id,
-//         userId: user.id,
-//       },
-//     });
-
-//     return NextResponse.json({ success: true, deleted });
-//   } catch (err) {
-//     console.error("Delete workout error:", err);
-//     return NextResponse.json({ error: "Workout not found or delete failed" }, { status: 500 });
-//   }
-// }

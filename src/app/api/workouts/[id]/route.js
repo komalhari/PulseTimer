@@ -22,8 +22,8 @@ export async function PUT(req, { params }) {
   try {
     const updated = await prisma.workout.update({
       where: {
-        id, // the workout ID in URL
-        userId: user.id, // makes sure user can only update *their* workout
+        id, 
+        userId: user.id, 
       },
       data: {
         activity,

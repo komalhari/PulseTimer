@@ -7,7 +7,7 @@ export async function GET(request) {
   const token_hash = searchParams.get("token_hash");
   const type = searchParams.get("type");
 
-  const allowedRedirects = ["/dashboard", "/profile", "/reset", "/reset/update"]; // whitelist
+  const allowedRedirects = ["/dashboard", "/profile", "/reset", "/reset/update"]; 
   const requestedRedirect = searchParams.get("next");
   const next = allowedRedirects.includes(requestedRedirect)
     ? requestedRedirect

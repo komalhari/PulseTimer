@@ -11,7 +11,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { TriangleAlert } from 'lucide-react';
 import { toast } from "sonner";
 import {
   signInWithFacebook,

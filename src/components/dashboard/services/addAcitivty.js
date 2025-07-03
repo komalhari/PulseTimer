@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-
 import {
   Dialog,
   DialogClose,
@@ -22,8 +21,6 @@ import { useState } from "react";
 export function AddActivity({ onSubmitted, day, tableMode }) {
   const [open, setOpen] = useState();
   const [loading, setLoading] = useState(false);
-
-  
 
   const schema = yup.object().shape({
     activity: yup.string().required("This is a required field"),
@@ -56,20 +53,22 @@ export function AddActivity({ onSubmitted, day, tableMode }) {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  
 
   const onSubmit = async (data) => {
     setLoading(true);
-    console.log("this is dat", data)
+    console.log("this is dat", data);
     try {
-
-      const endpoint = tableMode === "daily" ? "/api/daily_workouts" : "/api/workouts"
+      const endpoint =
+        tableMode === "daily" ? "/api/daily_workouts" : "/api/workouts";
       const res = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({...data,  ...(tableMode === "daily" && {day:day}) }),
+        body: JSON.stringify({
+          ...data,
+          ...(tableMode === "daily" && { day: day }),
+        }),
       });
 
       const newWorkout = await res.json();
@@ -87,12 +86,15 @@ export function AddActivity({ onSubmitted, day, tableMode }) {
   };
 
   return (
-    <Dialog open={open}  onOpenChange={(isOpen) => {
-      setOpen(isOpen);
-    if (isOpen) {
-        setLoading(false); // Reset spinner
-    }
-  }}>
+    <Dialog
+      open={open}
+      onOpenChange={(isOpen) => {
+        setOpen(isOpen);
+        if (isOpen) {
+          setLoading(false); // Reset spinner
+        }
+      }}
+    >
       <div>
         <DialogTrigger asChild>
           <CirclePlus className="w-4 h-4 cursor-pointer transition-all duration-200 hover:text-green-700" />
@@ -159,7 +161,7 @@ export function AddActivity({ onSubmitted, day, tableMode }) {
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
 
-              <Button  type="submit">
+              <Button type="submit">
                 Add
                 {loading && <Loader2 className="ml-1 h-4 w-4 animate-spin" />}
               </Button>

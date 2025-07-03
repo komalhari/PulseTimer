@@ -3,13 +3,7 @@
 import { ArrowUpDown, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-
-
-
-
-
 export const getColumns = (mode, setInternalFormdata, router, workouts) => [
-  
   {
     accessorKey: "player_or_checkbox",
     header: ({ table }) => {
@@ -18,10 +12,9 @@ export const getColumns = (mode, setInternalFormdata, router, workouts) => [
           type="checkbox"
           checked={table.getIsAllPageRowsSelected()}
           onChange={table.getToggleAllPageRowsSelectedHandler()}
-
         />
       ) : (
-        <div className="grid place-items-center" >
+        <div className="grid place-items-center">
           <Play className="h-5 w-5 fill-black" />
         </div>
       );
@@ -30,25 +23,20 @@ export const getColumns = (mode, setInternalFormdata, router, workouts) => [
     cell: ({ row }) =>
       mode === "delete" ? (
         <Button variant="ghost" size="sm">
-      <input
-          type="checkbox"
-          checked={row.getIsSelected()}
-          onChange={row.getToggleSelectedHandler()}
-        />
+          <input
+            type="checkbox"
+            checked={row.getIsSelected()}
+            onChange={row.getToggleSelectedHandler()}
+          />
         </Button>
       ) : (
         <Button
           variant="ghost"
           size="sm"
           onClick={() => {
+            setInternalFormdata(row.original, workouts);
 
-
-           setInternalFormdata(row.original, workouts);
-          
-             	  
             window.location.href = "/timer";
-          
-          
           }}
         >
           <Play className="h-3 w-3" />

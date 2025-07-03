@@ -66,7 +66,7 @@ export function UpdateActivity({
   } = useForm({
     resolver: yupResolver(schema),
   });
-  // const currentText = watch("activityName", "");
+ 
   useEffect(() => {
     if (formData && Object.keys(formData).length > 0) {
       setOpen(true);

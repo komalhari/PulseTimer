@@ -39,8 +39,8 @@ export default function ConnectedAccounts(providers) {
   const handleDisconnect = async (provider_) => {
     const identity = providededData.find((prov) => prov.provider === provider_);
 
-    console.log("this is provider", provider_)
-      try {
+    console.log("this is provider", provider_);
+    try {
       const res = await fetch("/api/disconnect/", {
         method: "POST",
         headers: { "Content-type": "application/json" },
@@ -58,7 +58,7 @@ export default function ConnectedAccounts(providers) {
   const emailLinked = providededData.some((acc) => acc.provider === "email");
 
   const providersData = [
-    emailLinked &&  {
+    emailLinked && {
       provider: "email",
       name: "Email",
       icon: <IoMdMail className="w-5 h-5" />,
@@ -97,7 +97,6 @@ export default function ConnectedAccounts(providers) {
       {accounts.map((account) => (
         <Card key={account.provider} className="flex flex-col justify-between">
           <CardHeader className="flex items-center gap-1.5">
-
             {account.icon}
             <CardTitle>{account.name}</CardTitle>
           </CardHeader>
